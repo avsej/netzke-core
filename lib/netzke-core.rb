@@ -16,10 +16,6 @@ end
 if defined? Rails
   require 'netzke/railz'
 
-  ActiveSupport.on_load(:action_controller) do
-    include Netzke::Railz::ControllerExtensions
-  end
-
   ActiveSupport.on_load(:action_view) do
     include Netzke::Railz::ActionViewExt
   end
