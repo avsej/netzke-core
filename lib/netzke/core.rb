@@ -37,7 +37,7 @@ module Netzke
     # set in Netzke::ControllerExtensions
     mattr_accessor :controller
 
-    # set in Netzke::ControllerExtensions
+    # set in Rack::Netzke
     mattr_accessor :session
     @@session = {}
 
@@ -50,6 +50,8 @@ module Netzke
     # Stylesheets that cannot be loaded dynamically along with the rest of the component, e.g. due to that relative paths are used in them
     mattr_accessor :external_ext_css
     @@external_ext_css = []
+
+    mattr_accessor :relative_url_root
 
     mattr_accessor :icons_uri
     @@icons_uri = "/images/icons"
@@ -83,7 +85,7 @@ module Netzke
 
     # returns a full URI to an icon file by its name
     def self.uri_to_icon(icon)
-      with_icons ? [(controller && controller.config.relative_url_root), icons_uri, '/', icon.to_s, ".png"].join : nil
+      with_icons ? [relative_url_root, icons_uri, '/', icon.to_s, ".png"].join : nil
     end
   end
 end

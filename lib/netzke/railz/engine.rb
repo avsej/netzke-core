@@ -10,6 +10,7 @@ module Netzke
 
       # before loading initializers
       config.before_initialize do |app|
+        Netzke::Core.relative_url_root = app.config.action_controller.relative_url_root
         Netzke::Core.config = config.netzke # passing app-level config to Netzke::Core
         Netzke::Core.persistence_manager_class = Netzke::Core.persistence_manager.constantize rescue nil
       end
